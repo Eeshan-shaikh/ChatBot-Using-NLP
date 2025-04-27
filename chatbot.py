@@ -70,27 +70,7 @@ def chatbot(input_text):
     except Exception as e:
         return f"An error occurred while processing your request: {e}"
 
-def play_audio(text):
-    global is_playing_audio
-    if is_playing_audio:
-        return  # Prevent playing audio if one is already playing
 
-    is_playing_audio = True  # Set the flag to indicate audio is playing
-    tts = gTTS(text=text, lang='en')
-    
-    audio_fp = io.BytesIO()
-    tts.write_to_fp(audio_fp)
-    audio_fp.seek(0)  # Move to the start of the BytesIO object
-
-    pygame.mixer.init()
-    pygame.mixer.music.load(audio_fp)
-    pygame.mixer.music.play()
-
-    # Wait until the audio is finished playing
-    while pygame.mixer.music.get_busy():
-        pygame.time.Clock().tick(10)
-
-    is_playing_audio = False  # Reset the flag after playback is complete
 
 counter = 0
 def main():
@@ -136,10 +116,7 @@ def main():
                     st.write("Thank you for chatting with me. Have a great day!")
                     st.stop()
 
-            # Button to play the response audio
-            if st.button("Read Response"):
-                if 'last_response' in st.session_state:
-                    play_audio(st.session_state.last_response)
+          
 
         # Ensure the last response is displayed even after clicking the button
         if 'last_response' in st.session_state:
