@@ -1,0 +1,13 @@
+import os
+import json
+import datetime
+import csv
+import nltk
+import ssl
+import streamlit as st
+import random
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from gtts import gTTS
+import pygame
+import io
