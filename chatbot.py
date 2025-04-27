@@ -16,8 +16,13 @@ ssl._create_default_https_context = ssl._create_unverified_context
 nltk.data.path.append(os.path.abspath("nltk_data"))
 nltk.download('punkt')
 
-# Load intents from the JSON file
-file_path = os.path.abspath(r'C:\Users\shaik\Desktop\ChatBot\intents.json')
+# Get the current directory of the script (chatbot.py)
+current_dir = os.path.dirname(__file__)
+
+# Join it with the relative path to intents.json
+file_path = os.path.join(current_dir, "intents.json")
+
+# Open and load the JSON data
 with open(file_path, "r") as file:
     intents = json.load(file)
 
